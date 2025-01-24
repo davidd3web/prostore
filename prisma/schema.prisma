@@ -59,7 +59,7 @@ model Account {
  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
-  @@unique([provider, providerAccountId])
+  @@id([provider, providerAccountId])
 }
 
 model Session {
@@ -71,7 +71,6 @@ model Session {
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAT DateTime @updatedAt
  
-  @@map("sessions")
 }
 
 model VerificationToken {
@@ -79,5 +78,5 @@ model VerificationToken {
   token      String
   expires    DateTime
  
-  @@unique([identifier, token])
+  @@id([identifier, token])
 }

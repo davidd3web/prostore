@@ -1,15 +1,16 @@
+import { compareSync } from 'bcrypt-ts-edge'
+import type { NextAuthConfig } from 'next-auth'
 import NextAuth from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from '@/db/prisma'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { compareSync } from 'bcrypt-ts-edge'
 
 export const config = {
     pages: {
         signIn: '/sign-in',
         error: '/sign-in'
     },
-    sessions : {
+    session : {
         strategy: 'jwt',
         maxAge: 30 * 24 * 60 * 60, // 30 days
     },
@@ -28,7 +29,7 @@ export const config = {
                     where: {
                         email: credentials.email as string
                     }
-                })
+                })  
 
                 // Check if the user exists and if the password matches
                 if (user && user.password) {
@@ -62,6 +63,6 @@ export const config = {
             return session
         },
     }
-}
+} satisfies NextAuthConfig
 
 export const {handlers, auth, signIn, signOut} = NextAuth(config)

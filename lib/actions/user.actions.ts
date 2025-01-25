@@ -1,8 +1,8 @@
 'use server'
 
+import { isRedirectError } from "next/dist/client/components/redirect-error"
 import { signInFormSchema } from "../validators"
 import { signIn, signOut } from "@/auth"
-import { isRedirectError } from "next/dist/client/components/redirect-error"
 
 // Sign in the user with credentials
 export async function signInWithCredentials(prevState: unknown, formData: FormData) {
@@ -13,6 +13,8 @@ export async function signInWithCredentials(prevState: unknown, formData: FormDa
         })
 
         await signIn('credentials', user)
+
+        console.log(user)
 
         return { success: true, message: 'Signed in successfully'}
     } catch (error) {

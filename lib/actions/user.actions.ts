@@ -17,8 +17,6 @@ export async function signInWithCredentials(prevState: unknown, formData: FormDa
 
         await signIn('credentials', user)
 
-        console.log(user)
-
         return { success: true, message: 'Signed in successfully'}
     } catch (error) {
         if (isRedirectError(error)) {

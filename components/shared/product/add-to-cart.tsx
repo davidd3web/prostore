@@ -9,7 +9,7 @@ import { Loader, Minus, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
     const router = useRouter()
     const { toast } = useToast()
